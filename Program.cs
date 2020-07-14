@@ -1,84 +1,80 @@
-﻿using System;
+using System;
 
-namespace Tabuada
+namespace Fibonacci
 {
     class Program
     {
         static void Main(string[] args)
         {
             /*
-            [console: Tabuada] Receba um número. Exiba sua tabuada.
+            [console: Fibonacci] Receba um número inteiro N. Exiba os N primeiros números da sequência de Fibonacci.
+            Nesta sequência, os dois primeiros números são 0 e 1. Os próximos números são a soma dos dois números anteriores.
+            0
+            1
+            0 + 1 = 1
+            1 + 1 = 2
+            1 + 2 = 3
+            2 + 3 = 5
+            3 + 5 = 8
+            ...
             Ex.:
-            Tabuada do número: 7
-
-            7 x 0 = 0
-            7 x 1 = 7
-            7 x 2 = 14
-            7 x 3 = 21
-            7 x 4 = 28
-            7 x 5 = 35
-            7 x 6 = 42
-            7 x 7 = 49
-            7 x 8 = 56
-            7 x 9 = 63
-            7 x 10 = 70
+            Sequência de Fibonacci
+            Quantos termos (>=2)? 21
+            0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765
             */
 
-            bool fim = false;
+            int n;
+            int n1 = 0;
+            int n2 = 1;
+            int final = 0;
 
-            int numero;
+            bool positivo;
 
-            int valorinicial = 0;
+            // número aprovado pelo sistema
 
-            while (!fim)
-            
-            // optei or colocar o int de 0 como falor inicial parafacilitar o entendimento, pois zero é o número ultilizado na primeira multiplicação
-            {
+            Console.WriteLine("Digite um número...");
 
-            Console.WriteLine("Você precisa da tabuada de qual número?.");
+            positivo = Int32.TryParse(Console.ReadLine(), out n);
 
-            bool numerobool = Int32.TryParse(Console.ReadLine(), out numero);
-
-            if (!numerobool)
+            if (n < 2)
 
             {
 
-                Console.WriteLine("Valor inválido.");
+                Console.WriteLine("Número inválido.");
 
-                Console.WriteLine("Tente novamente, digitando outro valor.");
+                Console.WriteLine("Aperte qualquer tecla.");
 
                 Console.ReadKey();
 
+                Environment.Exit(-1);
+
+                // omando para fechar o programa
+
             }
 
-            else
+            for (int contador = 0; contador < n; contador++)
+
+            // pra simplificar, como o usuário digitará apenas um número irei usar o tipo de laço for
 
             {
+                Console.WriteLine(final);
 
-                while (valorinicial < 11)
+                final = n1 + n2;
+                
+                n2 = n1;
 
-                // quando o valor digitado pelo usuário for menor que 11, o programa realiza sua função
-
-                {
-
-                    int resultadofinal = numero * valorinicial;
-
-                    Console.WriteLine($"{numero} x {valorinicial} = {resultadofinal}");
-                    
-                    valorinicial = valorinicial + 1;
-                    
-                    // comando de ultilizado pelo professor ermogenes para que a cada multiplicação aumente em 1
-                }
-
-                fim = true;
+                n1 = final;
 
             }
 
-            }
 
-            Console.WriteLine("Esse foi o meu programa,aperte uma tecla para finalizar.");
+
+            Console.WriteLine("Esse foi o meu programa, aperte qualquer tecla para encerrar.");
 
             Console.ReadKey();
+
+
+
         }
     }
 }
